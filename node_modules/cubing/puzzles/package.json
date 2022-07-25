@@ -1,0 +1,4 @@
+{
+  "main": "../dist/esm/puzzles/index.js",
+  "types": "../dist/types/puzzles/index.d.ts"
+}

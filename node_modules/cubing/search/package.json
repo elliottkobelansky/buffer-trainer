@@ -1,0 +1,4 @@
+{
+  "main": "../dist/esm/search/index.js",
+  "types": "../dist/types/search/index.d.ts"
+}
