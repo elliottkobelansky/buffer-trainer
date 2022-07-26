@@ -21,6 +21,7 @@ function evenize(int) {
 
 class bufferTrainer {
     constructor(buffer) {
+        this.buffer = buffer;
         this.pieces = PIECES.slice(PIECES.indexOf(buffer) + 1);
         console.log(this.pieces);
     }
@@ -45,8 +46,7 @@ class bufferTrainer {
         for (let i = 0; i < targets.length / 2; i++) {
             let firstTarget = targets[i * 2];
             let secondTarget = targets[i * 2 + 1];
-            // Put UF here after
-            algs.push(COMMS[firstTarget][secondTarget]);
+            algs.push(COMMS[this.buffer][firstTarget][secondTarget]);
         }
         const cube = new Cube();
         let setup = algs.join(" ");
