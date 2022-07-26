@@ -1,0 +1,33 @@
+body {
+    background-color: #282c34;
+    color: #abb2bf;
+    font-family: Consolas, monospace;
+    font-size: 40px;
+}
+
+.scramblediv {
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+    text-align: center;
+}
+.scramble {
+    text-align: center;
+}
+
+p {
+    margin-top: 10px;
+}
+
+select {
+    text-align: center;
+    background: inherit;
+    border: none;
+    padding: 20px;
+    width: auto;
+    font-size: 40px;
+    font-family: Consolas, monospace;
+    color: inherit;
+    outline: none;
+}
+
+
