@@ -10,29 +10,39 @@
 
 <body>
     <div class="scramblediv">
-        <select name="edgebuffer">
+        <div class="nextlast">
+            <span id="last" class="last" onclick="">Last</span>
+            <span id="next" class="next" onclick="">Next</span>
+        </div>
+        <div class="scramble">
+            <p id="scramble">Scramble</p>
+        </div>
+        <select id="edgebuffer" class="buffer" name="edgebuffer">
             <option value="None">None</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
+            <option value="UF" selected="selected">UF</option>
+            <option value="UB">UB</option>
+            <option value="UR">UR</option>
+            <option value="UL">UL</option>
+            <option value="FR">FR</option>
+            <option value="FL">FL</option>
+            <option value="DF">DF</option>
+            <option value="DB">DB</option>
+            <option value="DR">DR</option>
+            <option value="DL">DL</option>
         </select>
-        <select name="edgebuffer">
+        <select id="cornerbuffer" class="buffer" name="cornerbuffer">
             <option value="None">None</option>
-            <option value="UF">UFR</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
-            <option value="UF">UF</option>
+            <option value="UFR" selected="selected">UFR</option>
+            <option value="UFL">UFL</option>
+            <option value="UBR">UBR</option>
+            <option value="UBL">UBL</option>
+            <option value="DFR">DFR</option>
+            <option value="DFL">DFL</option>
         </select>
-        <p id="scramble" class="scramble">R U F B L D</p>
     </div>
-    <button id="genScram" type="button">Test</button>
+    <div class="center">
+        <p id="space" class="space">Press Space for Next Scramble</p>
+    </div>
     <script src="js/comms.js"></script>
     <script src="js/cube.js"></script>
     <script src="js/solve.js"></script>
