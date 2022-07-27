@@ -1,6 +1,6 @@
 Cube.initSolver();
 
-const EDGES = ["UB", "UR", "UL", "DF", "DB", "FR", "FL", "DR", "DL", "BR", "BL"]
+const EDGES = ["UF", "UB", "UR", "UL", "DF", "DB", "FR", "FL", "DR", "DL", "BR", "BL"]
 const CORNERS = ["UFR", "UFL", "UBL", "UBR", "DFR", "DFL", "DBR", "DBL"]
 
 function randIndex(list) {
@@ -25,20 +25,27 @@ function randTern() {
     }
 }
 
-function reverseString(str) {
-    return str.split("").reverse().join("");
+function randomEdgeOri(piece) {
+    if (randBool()) {
+        return piece.split('').reverse().join('');
+    } else {
+        return piece
+    }
 }
 
-function cornerCaseOne(str) {
-    let arr = str.split('');
-    [arr[0], arr[1]] = [arr[1], arr[0]];
-    return arr.join('');
-}
+function randomCornerOri(piece) {
+    let arr = piece.split('');
+    let randtern = randTern();
 
-function cornerCaseTwo(str) {
-    let arr = str.split('');
-    [arr[0], arr[1], arr[2]] = [arr[2], arr[0], arr[1]];
-    return arr.join('');
+    if (randtern === 1) {
+        [arr[0], arr[1]] = [arr[1], arr[0]];
+        return arr.join('');
+    } else if (randtern === 2) {
+        [arr[0], arr[1], arr[2]] = [arr[2], arr[0], arr[1]];
+        return arr.join('');
+    } else {
+        return piece;
+    }
 }
 
 function evenize(int) {
@@ -46,48 +53,63 @@ function evenize(int) {
 }
 
 class bufferTrainer {
-    constructor(eBuffer, cBuffer) {
-        this.eBuffer = eBuffer;
-        this.cBuffer = cBuffer;
-        if (eBuffer !== "None") {
-            this.edgepieces = EDGES.slice(EDGES.indexOf(eBuffer) + 1);
+    constructor(userE, userC, excludeEdges, excludeCorners) {
+        this.userE = userE;
+        this.userC = userC;
+        if (excludeEdges !== "All") {
+            this.edgepieces = EDGES.slice();
+            for (let excludeEdge of excludeEdges) {
+                let edgeIndex = this.edgepieces.indexOf(excludeEdge);
+                this.edgepieces.splice(edgeIndex, 1);
+            }
+            this.eBuffer = this.edgepieces.shift();
+        } else {
+            this.eBuffer = "None";
         }
-        if (cBuffer !== "None") {
-            this.cornerpieces = CORNERS.slice(CORNERS.indexOf(cBuffer) + 1);
+        if (excludeCorners !== "All") {
+            this.cornerpieces = CORNERS.slice();
+            for (let excludeCorner of excludeCorners) {
+                let cornerIndex = this.cornerpieces.indexOf(excludeCorner);
+                this.cornerpieces.splice(cornerIndex, 1);
+            }
+            this.cBuffer = this.cornerpieces.shift();
+        } else {
+            this.cBuffer = "None";
         }
     }
     genRandomEdgeTargets() {
         let targets = [];
+        let bufferintargets = false;
         let availablePieces = Array.from(this.edgepieces) 
         for (let i = 0; i < evenize(this.edgepieces.length); i++) {
             let r = randIndex(availablePieces);
             let randPiece = availablePieces.splice(r, 1)[0];
-            
-            if (randBool()) {
-                randPiece = reverseString(randPiece);
+            if (randPiece == this.userE) {
+                bufferintargets = true;
             }
-
-            targets.push(randPiece);
+            targets.push(randomEdgeOri(randPiece));
+        }
+        if (this.eBuffer !== this.userE && !bufferintargets) {
+            targets.splice(randIndex(targets), 1, randomEdgeOri(this.userE));
         }
         return targets;
     }
     genRandomCornerTargets() {
         let targets = [];
+        let bufferintargets = false;
         let availablePieces = Array.from(this.cornerpieces)
         for (let i = 0; i < evenize(this.cornerpieces.length); i++) {
             let r = randIndex(availablePieces);
             let randPiece = availablePieces.splice(r, 1)[0];
-
-            let randtern = randTern();
-            if (randtern === 1) {
-                randPiece = cornerCaseOne(randPiece);
+            if (randPiece == this.userC) {
+                bufferintargets = true;
             }
-            else if (randtern === 2) {
-                randPiece = cornerCaseTwo(randPiece);
-            }
-            targets.push(randPiece);
+            targets.push(randomCornerOri(randPiece));
         }
-        return targets
+        if (this.cBuffer !== this.userC && !bufferintargets) {
+            targets.splice(randIndex(targets), 1, randomCornerOri(this.userC));
+        }
+        return targets;
     }
     getScram() {
         let algs = [];
