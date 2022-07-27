@@ -1,4 +1,7 @@
-let bt = new bufferTrainer("UF");
+let EDGEBUFFER = "UF";
+let CORNERBUFFER = "UFR";
+
+let bt = new bufferTrainer(EDGEBUFFER, CORNERBUFFER);
 
 let nextscram = bt.getScram();
 let thisscram = "";
@@ -38,18 +41,22 @@ document.getElementById("last").onclick = function () {
 };
 
 // Selecting new buffer(s)
-let EDGEBUFFER = "UF"
-let CORNERBUFFER = "None"
-
 document.getElementById("edgebuffer").onchange = function () {
     document.getElementById("edgebuffer").blur();
     let e = document.getElementById("edgebuffer");
     let value = e.options[e.selectedIndex].value; 
-    bt = new bufferTrainer(value);
+    EDGEBUFFER = value;
+    bt = new bufferTrainer(value, CORNERBUFFER);
     genScram();
     displayScram();
 };
 
 document.getElementById("cornerbuffer").onchange = function () {
     document.getElementById("cornerbuffer").blur();
+    let e = document.getElementById('cornerbuffer');
+    let value = e.options[e.selectedIndex].value;
+    CORNERBUFFER = value;
+    bt = new bufferTrainer(EDGEBUFFER, value);
+    genScram();
+    displayScram();
 };
