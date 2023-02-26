@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buffer Trainer</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="icon" type="image/png" href="./images/favicon-192x192.png">
+    <link rel="apple-touch-icon" type="image/png" href="./images/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scramblediv">
+        <select id="edgebuffer" class="buffer" name="edgebuffer">
+            <option value="None">None</option>
+            <option value="UF" selected="selected">UF</option>
+            <option value="UB">UB</option>
+            <option value="UR">UR</option>
+            <option value="UL">UL</option>
+            <option value="FR">FR</option>
+            <option value="FL">FL</option>
+            <option value="DF">DF</option>
+            <option value="DB">DB</option>
+            <option value="DR">DR</option>
+            <option value="DL">DL</option>
+        </select>
+        <select id="cornerbuffer" class="buffer" name="cornerbuffer">
+            <option value="None">None</option>
+            <option value="UFR" selected="selected">UFR</option>
+            <option value="UFL">UFL</option>
+            <option value="UBR">UBR</option>
+            <option value="UBL">UBL</option>
+            <option value="DFR">DFR</option>
+            <option value="DFL">DFL</option>
+        </select>
+    </div>
+    <div class="container">
+        <ul id="edgebufferlist" class="edgebufferlist">
+            <li class="bufferorder"><a>UF</a></li>
+            <li class="bufferorder"><a>UB</a></li>
+            <li class="bufferorder"><a>UR</a></li>
+            <li class="bufferorder"><a>UL</a></li>
+            <li class="bufferorder"><a>FR</a></li>
+            <li class="bufferorder"><a>FL</a></li>
+            <li class="bufferorder"><a>DF</a></li>
+            <li class="bufferorder"><a>DB</a></li>
+            <li class="bufferorder"><a>DR</a></li>
+            <li class="bufferorder"><a>DL</a></li>
+        </ul>
+        <div class="center">
+            <form id='input'>
+                <input name='number' type="number" autocomplete="off">
+                <input type="submit" value="gen">
+            </form>
+            <textarea id="output" rows="15" cols="200"></textarea>
+        </div>
+        <ul id="cornerbufferlist" class="cornerbufferlist">
+            <li class="bufferorder"><a>UFR</a></li>
+            <li class="bufferorder"><a>UFL</a></li>
+            <li class="bufferorder"><a>UBR</a></li>
+            <li class="bufferorder"><a>UBL</a></li>
+            <li class="bufferorder"><a>DFR</a></li>
+            <li class="bufferorder"><a>DFL</a></li>
+        </ul>
+        <span id="confirm" class="confirm">Confirm Buffers</span>
+    </div>
+    <script src="js/comms.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="js/cube.js"></script>
+    <script src="js/solve.js"></script>
+    <script src="js/buffer_trainer.js"></script>
+    <script src="js/gen.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 body {
     background-color: #282c34;
-    color: #abb2bf;
+    color: #ffffff;
     font-family: Consolas, monospace;
     font-size: 30px;
 }
@@ -135,6 +135,25 @@ ul.edgebufferlist li, ul.cornerbufferlist li {
 }
 
 .confirm:hover {
+    color: #e5c07b;
+    cursor: pointer;
+}
+
+.mode {
+    position: absolute;
+    text-align: center;
+    font-size: 25px;
+    vertical-align: bottom;
+    border: 2px solid;
+    padding: 5px;
+    width: fit-content;
+    height: fit-content;
+    margin: 40px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.mode:hover {
     color: #e5c07b;
     cursor: pointer;
 }
