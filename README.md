@@ -1,4 +1,4 @@
-# [https://elliottkobelansky.github.io/buffer-trainer/](buffer-trainer)
+# [buffer-trainer](https://elliottkobelansky.github.io/buffer-trainer/)
 Train floating buffers for 3BLD.
 
 ## Purpose
